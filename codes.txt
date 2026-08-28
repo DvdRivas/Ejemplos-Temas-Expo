@@ -1,0 +1,178 @@
+------------ Cadena if else
+
+#include <iostream>
+
+int main() {
+    int velocidad = 75; 
+
+    if (velocidad > 120) {
+        std::cout << "Peligro: Exceso de velocidad extremo.\n";
+    } 
+    else if (velocidad > 80) {
+        std::cout << "Advertencia: Vas a alta velocidad.\n";
+    } 
+    else if (velocidad > 40) {
+        std::cout << "Velocidad moderada y adecuada.\n";
+    } 
+    else {
+        std::cout << "Vehiculo detenido o demasiado lento.\n";
+    }
+
+}
+
+------------ Python 
+
+calificacion = 'B'
+
+match calificacion:
+    case 'A':
+        print("¡Excelente trabajo!")
+    case 'B':
+        print("Buen rendimiento.")
+    case 'C':
+        print("Aprobado, pero puedes mejorar.")
+    case _: 
+        print("Calificación no válida.")
+
+
+------------ C++
+
+#include <iostream>
+
+int main() {
+    char calificacion = 'B';
+
+    switch (calificacion) {
+        case 'A':
+            std::cout << "¡Excelente trabajo!" << std::endl;
+            break; 
+            
+        case 'B':
+            std::cout << "Buen rendimiento." << std::endl;
+            break; 
+            
+        case 'C':
+            std::cout << "Aprobado, pero puedes mejorar." << std::endl;
+            break; 
+            
+        default: 
+            std::cout << "Calificación no válida." << std::endl;
+            break; 
+    }
+
+}
+
+------------ Cadena if else
+
+fn main() {
+    let calificacion = 'B';
+
+    match calificacion {
+        'A' => println!("¡Excelente trabajo!"),
+        'B' => println!("Buen rendimiento."),
+        'C' => println!("Aprobado, pero puedes mejorar."),
+        _ => println!("Calificación no válida."), 
+    }
+}
+
+
+------------ for
+
+#include <iostream>
+
+int main() {
+
+    for (int i = 1; i <= 3; i++) {
+        std::cout << "iteracion #" << i << "\n";
+    }
+
+}
+
+for(;;)
+
+for con vectores e index ------------
+
+#include <iostream>
+#include <vector> 
+
+int main() {
+    std::vector<int> calificaciones = {85, 92, 78, 90, 88};
+
+    for (size_t i = 0; i < calificaciones.size(); ++i) {
+        std::cout << "Indice [" << i << "]: " << calificaciones[i] << "\n";
+    }
+}
+
+for con vectores y range-based ------------
+
+#include <iostream>
+#include <vector> 
+
+int main() {
+    std::vector<int> calificaciones = {85, 92, 78, 90, 88};
+
+    for (const auto& nota : calificaciones) {
+        std::cout << "Calificacion: " << nota << "\n";
+    }
+}
+
+------------ while
+
+#include <iostream>
+
+int main() {
+    int contador = 1; 
+
+    while (contador <= 3) {
+        std::cout << "Iteracion #" << contador << "\n";
+        
+        contador++; 
+        contador = contador + 1;
+        contador += 1;
+        contador = contador++; // incorrecto 
+        contador = ++contador; // correcto
+
+    }
+
+}
+
+while(true)
+
+------------ do while
+
+
+#include <iostream>
+
+int main() {
+    int numero; 
+
+    do {
+        std::cout << "Introduce un numero positivo de un digito (1 - 9): ";
+        std::cin >> numero; 
+        
+    } while (numero < 1 || numero > 9); 
+
+    std::cout << "¡Excelente! El numero " << numero << " es valido.\n";
+}
+
+------------ STL
+
+#include <iostream>
+#include <vector> 
+#include <numeric>
+
+int main() {
+    std::vector<int> calificaciones = {85, 92, 78, 90, 88};
+
+    // double suma = 0.0; 
+
+    // // El programador controla manualmente los índices y límites
+    // for (size_t i = 0; i < calificaciones.size(); ++i) {
+    //     suma += calificaciones[i]; // Acumulación explícita
+    // }
+
+    double suma = std::accumulate(calificaciones.begin(), calificaciones.end(), 0.0);
+    std::cout << "La suma de las calificaciones es: " << suma << "\n";
+}
+
+
