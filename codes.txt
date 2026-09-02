@@ -20,21 +20,6 @@ int main() {
 
 }
 
------------- Python 
-
-calificacion = 'B'
-
-match calificacion:
-    case 'A':
-        print("¡Excelente trabajo!")
-    case 'B':
-        print("Buen rendimiento.")
-    case 'C':
-        print("Aprobado, pero puedes mejorar.")
-    case _: 
-        print("Calificación no válida.")
-
-
 ------------ C++
 
 #include <iostream>
@@ -88,7 +73,18 @@ int main() {
 
 }
 
-for(;;)
+------------- for inf
+int main() {
+    
+    int i = 0;
+
+    for (;;) {
+        i++;
+        std::cout << "iteracion #" << i << "\n";
+    }
+}
+
+
 
 for con vectores e index ------------
 
@@ -175,4 +171,45 @@ int main() {
     std::cout << "La suma de las calificaciones es: " << suma << "\n";
 }
 
+--------------- brake y continue 
+
+int main() {
+    int i=21;
+    for (;;) {
+        i--;
+        if(i==0) {
+            break;
+        } else if (i%2 != 0) {
+            continue;
+        }
+        cout << i << endl;
+    }
+}
+
+
+------------- Ciclos anidados, actividad, crear un contador que vaya de 1 a 100 usando dos for
+
+int main() {
+    int valor;
+
+    for (int j = 0; j <= 9; j++) {
+        for (int k = 0; k <= 9; k++) {
+            valor  =  (j * 10) + k + 1;
+            std::cout << valor << " ";
+        }
+    }
+}
+
+----------- otro ejemplo curioso SHADOWING
+int main() {
+   for (int i = 1; i < 5; i++) {       // 'i' Externa
+    for (int i = 5; i >= 1; i--) {   // 'i' Interna (Redeclarada)
+        cout<< i << " ";
+     }
+    cout<< endl;
+     
+    }
+    cout << std::endl;
+    
+}
 

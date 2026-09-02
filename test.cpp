@@ -1,13 +1,16 @@
 #include <iostream>
-#include <vector> 
 #include <numeric>
 
-int main() {
-    
-    int i = 0;
+using namespace std;
 
-    for (;;) {
-        i++;
-        std::cout << "iteracion #" << i << "\n";
+int main() {
+   for (int i = 1; i < 5; i++) {       // 'i' Externa
+    for (int i = 5; i >= 1; i--) {   // 'i' Interna (Redeclarada)
+        cout<< i << " ";
+     }
+    cout<< endl;
+     
     }
+    cout << std::endl;
+    
 }
