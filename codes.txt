@@ -213,3 +213,86 @@ int main() {
     
 }
 
+
+============================================================
+============================================================
+============================================================
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    string name;
+    float n[3] = {};
+    cout << " Dame tu nombre y tres calificaciones: " << endl;
+    cin >> name ;
+    cout << endl;
+    cout << " Dame la calificacion 1: " << endl;
+    cin >> n[0];
+    cout << " Dame la calificacion 2: " << endl;
+    cin >> n[1];
+    cout << " Dame la calificacion 3: " << endl;
+    cin >> n[2];
+    float promedio;
+    float acc;
+    for (int i = 0; i <3; i++) {
+        acc += n[i];
+    }
+    promedio = acc / 3;
+
+    cout << " El promedio de " << name << " es: " << promedio << endl;
+}
+#include <iostream>
+
+using namespace std;
+
+void f2c(float n) {
+    cout << "temperatura en Celsius: " << n * 9 / 5 + 32 << endl;
+}
+
+void mi2km(float n) {
+    cout << "distancia en kilometros: " << n * 1.60934 << endl;
+}
+
+int main() {
+    int opcion; 
+    
+    do {
+        cout << "Escribe la conversion de tu interes: " << endl << "1) F a C" << endl << "2) mi a km" << endl << "3) salir" << endl;
+        cin >> opcion;
+    } while (opcion < 1 || opcion > 3);
+
+    float input;
+    switch(opcion){
+        case 1:
+            cout << "Dame la temperatura en Fahrenheit: ";
+            cin >> input;
+            f2c(input);
+            break;
+        case 2:
+            cout << "Dame la distancia en millas: ";
+            cin >> input;
+            mi2km(input);
+            break;
+        case 3:
+            cout << "Saliendo del programa..." << endl;
+            break;
+    }
+}
+#include <iostream>
+using namespace std;
+
+bool esPrimo(int n) {
+    if (n < 2) return false;          // 0 y 1 no son primos
+    if (n % 2 == 0) return n == 2;    // el único par primo es 2
+    for (int d = 3; d * d <= n; d += 2) {
+        if (n % d == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    for (int i = 0; i <= 200; i++) {
+        cout << "el numero: " << i << " es: " << esPrimo(i) << endl;
+    }
+}
