@@ -1,0 +1,47 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Automotor {
+    public:
+        string modelo;
+        int cilindros;
+        float gasolina;
+        float velocidad;
+        bool encendido;
+
+        void encender(){
+            encendido = true;
+            cout << "El auto ahora esta encendido" << endl;
+        }
+
+        void apagar() {
+            encendido = false;
+            cout << "El auto ahora esta apagado" << endl;
+        }
+
+        void acelerar(int cantidad) {
+            if(encendido) {
+                velocidad += cantidad;
+                cout << "El auto ahora esta avanzando con una velocidad de: " << velocidad << "km/h" << endl;
+            } else {
+                cout << "el auto esta apagado, primero enciendelo" << endl;
+            }
+        }
+
+};
+
+int main() {
+
+    Automotor Nissan;
+    cout << Nissan.modelo << endl;
+
+    Nissan.encender();
+    Nissan.modelo = "Sentra";
+    cout << Nissan.modelo << endl;
+
+    cout << Nissan.cilindros << endl;
+
+}
