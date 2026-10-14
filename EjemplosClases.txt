@@ -1,3 +1,4 @@
+EJEMPLO BASICO
 #include<iostream>
 #include<string>
 
@@ -20,6 +21,8 @@ int main(){
 }
 
 =========================================================================
+CLASE CON ATRIBUTOS Y METODOS
+
 #include<iostream>
 #include<string>
 
@@ -69,6 +72,8 @@ int main() {
 }
 
 =============================================================================
+PILARES
+
 #include<iostream>
 #include<string>
 
@@ -141,6 +146,8 @@ int main() {
 }
 
 =====================================================================================
+INITIALIZERS 
+
 #include<iostream>
 #include<string>
 
@@ -175,3 +182,121 @@ int main() {
     cout << test4.inches << endl;
 
 }
+
+==============================================================
+CONTROL DE ACCESO 
+
+#include<iostream>
+#include<string>
+
+#include<stdexcept>
+using namespace std;
+
+class CuentaBancaria {
+    private:
+        string username;
+        double saldo = 0;
+    public: 
+        CuentaBancaria(string name): username{name}  {} // solo funcuona cuando se tienen atributos en public y private
+
+        void leer_saldo() {
+            cout << "Saldo del usuario " << username << " es: " << saldo << endl;
+        }
+};      
+
+
+
+int main() {
+
+    // CuentaBancaria rivas{"David Rivas"}; solo funciona cuando todos los atributos estan en public, cuando no toca constructor
+    // cout << rivas.saldo << endl;
+
+
+}
+
+
+
+
+==============================================================
+INVARIANTES DE CLASE 
+
+#include<iostream>
+#include<string>
+
+#include<stdexcept>
+using namespace std;
+
+class CuentaBancaria {
+    private:
+        string username;
+        double saldo = 0;
+    public: 
+        CuentaBancaria(string name): username{name} { // invariante de clase
+            if(name == "Fulanito") {
+                throw invalid_argument("Ese usuario esta betado");
+            }
+        }
+
+        void leer_saldo() {
+            cout << "Saldo del usuario " << username << " es: " << saldo << endl;
+        }
+};      
+
+
+
+int main() {
+
+    CuentaBancaria rivas{"David Rivas"};
+    // cout << rivas.saldo << endl;
+    rivas.leer_saldo();
+
+    CuentaBancaria f("Fulanito");
+    f.leer_saldo();
+
+
+}
+
+=====================================================================
+ACCESSORS Y MUTATORS 
+
+#include<iostream>
+#include<string>
+
+#include<stdexcept>
+using namespace std;
+
+class CuentaBancaria {
+    private:
+        string username;
+        double saldo = 0;
+    public: 
+        CuentaBancaria(string name): username{name}  {} // solo funcuona cuando se tienen atributos en public y private
+        
+        double devolver_saldo() const {return saldo;} // accessor 
+
+        void depositar(double cantidad) { // mutator
+            if(cantidad <= 0) { // invariante de clase
+                throw invalid_argument("Monto ingresado para desposito invalido");
+            }
+
+            saldo += cantidad;
+        }
+
+        void leer_saldo() {
+            cout << "Saldo del usuario " << username << " es: " << saldo << endl;
+        }
+};      
+
+
+
+int main() {
+
+    CuentaBancaria rivas{"David Rivas"}; // solo funciona cuando todos los atributos estan en public, cuando no toca constructor
+    cout << "probando accessor: " << rivas.devolver_saldo() << endl;
+
+    rivas.depositar(100);
+    cout << "probando accessor 2: " << rivas.devolver_saldo() << endl;
+
+
+}
+
