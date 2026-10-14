@@ -158,7 +158,7 @@ class Laptop: public PC {
     float inches = 11;
     Laptop() = default;
 
-    Laptop(string a, string b, int c, bool d, float e): PC{a, b, c, d}, inches{e} {}
+    Laptop(string a, string b, int c, bool d, float e): PC{a, b, c, d}, inches{e} {} // Member initializer list 
 };
 
 int main() {
@@ -175,5 +175,3 @@ int main() {
     cout << test4.inches << endl;
 
 }
-
-
