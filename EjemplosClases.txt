@@ -3,6 +3,28 @@
 
 using namespace std;
 
+class Impresora {
+    public: 
+        void imprimir(string texto) {
+            cout << texto << endl;
+        }
+};
+
+
+
+
+int main(){
+
+    Impresora hewlett_packard;
+    hewlett_packard.imprimir("Hola mundo");
+}
+
+=========================================================================
+#include<iostream>
+#include<string>
+
+using namespace std;
+
 
 class Automotor {
     public:
@@ -45,3 +67,76 @@ int main() {
     cout << Nissan.cilindros << endl;
 
 }
+
+=============================================================================
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Automotor { // Esto es encapsulamiento porque guardas atributos y metodos en un solo lugar 
+    public:
+        string modelo;
+        int cilindros;
+        float gasolina = 100;
+        float velocidad = 0;
+        bool encendido = false;
+
+        void llenar_tanque() { // Nuevo metodo 
+            gasolina = 100.0;
+        }
+
+        void encender(){
+            encendido = true;
+            cout << "El auto ahora esta encendido" << endl;
+
+        }
+
+        void apagar() {
+            encendido = false;
+            cout << "El auto ahora esta apagado" << endl;
+        }
+
+        virtual void consumo(int velocidad) { // Polimorfismo
+            float consumo = .1*velocidad;
+            gasolina -= consumo;
+            cout << "Se consumio: " << consumo << "gasolina" << endl;
+        }
+
+        void acelerar(int cantidad) { // Abstraccion, abstraes el metodo a una llamada relativamente sencilla solo con el nombre
+            // instruccion modificada 
+            if(encendido && gasolina > 0) {
+                velocidad += cantidad;
+                cout << "El auto ahora esta avanzando con una velocidad de: " << velocidad << "km/h" << endl;
+                consumo(velocidad);
+            
+            } else {
+                cout << "el auto esta apagado, primero enciendelo" << endl;
+            }
+        }
+
+};
+
+
+class Trailer: public Automotor { // Herencia
+    public: 
+    void consumo(int velocidad){ // Polimorfismo
+        float consumo = .3*velocidad;
+        gasolina -= consumo;
+        cout << "Se consumio: " << consumo << "% gasolina" << endl; 
+    }
+};
+
+
+int main() {
+
+    Trailer Mack;
+
+    Mack.encender();
+
+    Mack.acelerar(10);
+
+
+}
+
