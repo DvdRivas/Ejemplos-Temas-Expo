@@ -140,3 +140,40 @@ int main() {
 
 }
 
+=====================================================================================
+#include<iostream>
+#include<string>
+
+using namespace std;
+class PC {
+    public: // forma in class, por defecto
+        string username = "User";
+        string procesador = "Generico";
+        int ram = 16;
+        bool bluetooth = true;
+};
+
+class Laptop: public PC {
+  public: 
+    float inches = 11;
+    Laptop() = default;
+
+    Laptop(string a, string b, int c, bool d, float e): PC{a, b, c, d}, inches{e} {}
+};
+
+int main() {
+    PC test{"user","intel", 24, false}; // brace inicialization
+    cout << test.procesador << endl;
+
+    PC test2;
+    cout << test2.procesador << endl;
+
+    Laptop test3{"David", "AMD", 128, true, 18};
+    cout << test3.inches << endl;
+    
+    Laptop test4;
+    cout << test4.inches << endl;
+
+}
+
+
