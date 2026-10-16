@@ -300,3 +300,243 @@ int main() {
 
 }
 
+=============================================================
+Shadowing mal 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Sensor {
+    double valor;
+    string tipo;
+    public:
+        Sensor(double valor, string tipo) {
+            valor = valor;   // this->valor = valor;
+            tipo = tipo;     // this->tipo = tipo;
+        }
+    void ver(){
+        cout << valor << tipo << endl;
+    }
+};
+
+
+
+
+int main() {
+    Sensor s1{0,"C"};
+    s1.ver();
+}
+
+======================================================================
+this 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Sensor {
+    double valor;
+    string tipo;
+    public:
+        Sensor(double valor, string tipo) {
+            this->valor = valor;
+            this->tipo = tipo;
+        }
+    void ver(){
+        cout << valor << tipo << endl;
+    }
+
+    void comparar(double valor) {
+        cout << "Comparando: " << valor << " con: " << this->valor << endl;
+    }
+};
+
+
+
+
+int main() {
+    Sensor s1{0,"C"};
+    s1.ver();
+    s1.comparar(100);
+}
+
+======================================================================
+*this 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Sensor {
+    double valor;
+    string tipo;
+    int* incremento;
+    public:
+        Sensor(double valor, string tipo, int* incremento) {
+            this->valor = valor;
+            this->tipo = tipo;
+            this->incremento = incremento;
+        }
+    void ver(){
+        cout << valor << tipo << endl;
+    }
+
+    void comparar(double valor) {
+        cout << "Comparando: " << valor << " con: " << this->valor << endl;
+    }
+
+    void incrementar() {
+        cout << "valor incrementado: " << this->valor * *this->incremento << endl;
+    }
+};
+
+
+
+
+int main() {
+    int incremento = 3;
+    Sensor s1{20,"C",&incremento};
+    s1.ver();
+    s1.comparar(100);
+    s1.incrementar();
+}
+
+========================================================================
+return *this 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Pizza {
+    string size{"chica"};
+    int ingredientes{0};
+    float precio{60};
+    
+    public:
+        Pizza& set_size(string size) {
+            if(size=="grande") {
+                this->size = size;
+                precio += 100;
+                
+                return *this;
+            }
+            return *this;
+        } 
+
+        Pizza& set_ingrediente(string ingrediente) {
+            ingredientes += 1;
+            cout << ingrediente << " agregado" << endl;
+            return *this;
+        }
+
+        void ver_pedido(){
+            cout << "Pizza " << size << " con " << ingredientes << " ingredientes con un total de: " << precio << endl;
+        }
+};
+
+
+
+int main() {
+    Pizza pizza;
+    pizza.set_size("grande").set_ingrediente("salchicha").set_ingrediente("tocino").set_ingrediente("carnes frias").ver_pedido();
+}
+
+===================================================================
+Paso de parametros
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class Numero {
+    public:
+    int valor{};
+    
+        void ver_valor() const {
+            cout << valor << endl;
+        }
+
+};
+
+void incremento_normal(Numero n){
+    n.valor += 100;
+}
+
+void incremento_ref(Numero& n){
+    n.valor += 100;
+}
+
+void incremento_const_ref(const Numero& n){
+    // n.valor += 100;
+    n.ver_valor();
+}
+
+int main() {
+
+    Numero n{5};
+    n.ver_valor();
+
+    incremento_normal(n);
+    n.ver_valor();
+
+    incremento_ref(n);
+    n.ver_valor();
+    
+    incremento_const_ref(n);
+
+}
+
+==============================================================
+
+retorno 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class Numero {
+    int valor{5};
+    public:
+    
+        int retorno_normal() const {
+            return valor;
+        }
+        
+        int& retorno_ref(){
+            return valor;
+        }
+        
+        int& dangling(){
+            int valor = this->valor;
+            return valor;
+        }
+};
+
+
+
+int main() {
+
+    Numero n;
+
+    int prueba = n.retorno_normal(); 
+    cout << prueba << endl;
+    
+    n.retorno_ref() = 100; 
+    cout << n.retorno_normal() << endl;
+    
+    cout << n.dangling() << endl;
+
+}
+
