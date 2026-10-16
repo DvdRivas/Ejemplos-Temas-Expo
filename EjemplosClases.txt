@@ -540,3 +540,126 @@ int main() {
 
 }
 
+
+=============================================================
+static sin inline
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Tareas {
+    string nombre;
+    static int total;
+    public:
+        Tareas(string nombre): nombre{nombre} {++total;}
+
+        static void ver_total(){
+            cout << total << endl;
+        }
+};
+
+int Tareas::total = 0;
+
+
+
+int main(){
+
+    Tareas t1("a");
+    Tareas t2("b");
+    Tareas t3("c");
+
+    Tareas::ver_total();
+}
+
+con inline 
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class Tareas {
+    string nombre;
+    float calificacion;
+    
+    static int total;
+    static inline float total_c{0};
+    public:
+        Tareas(string nombre, float calificacion): nombre{nombre}, calificacion{calificacion} {++total_c+=calificacion; ++total;}
+
+        static void ver_total(){
+            cout << total << endl;
+        }
+
+        static void ver_promedio(){
+
+            cout << total_c << endl;
+            cout << total_c / total << endl;
+        }
+};
+
+int Tareas::total = 0;
+
+
+
+int main(){
+
+    Tareas t1("a",70);
+    Tareas t2("b",80);
+    Tareas t3("c",100);
+
+    Tareas::ver_total();
+    Tareas::ver_promedio();
+}
+
+
+Cosa curiosa 
+
+class Tareas {
+    string nombre;
+    float calificacion;
+    
+    static int total;
+    static inline float total_c{0};
+
+    // static constexpr string docente = "Pepito";
+    static constexpr int C_MIN = 70;
+    public:
+        Tareas(string nombre, float calificacion): nombre{nombre}, calificacion{calificacion} {++total_c+=calificacion; ++total;}
+
+        static void ver_total(){
+            cout << total << endl;
+        }
+
+        static void ver_promedio(){
+
+            cout << total_c << endl;
+            cout << total_c / total << endl;
+        }
+
+        static void evaluar() {
+            if((total_c / total) >= C_MIN ) {
+                cout << "Si paso" << endl;
+            } else {
+                cout << "No paso" << endl;
+            }
+        }
+};
+
+int Tareas::total = 0;
+
+
+
+int main(){
+
+    Tareas t1("a",70);
+    Tareas t2("b",80);
+    Tareas t3("c",10);
+
+    Tareas::ver_total();
+    Tareas::ver_promedio();
+    t1.evaluar();
